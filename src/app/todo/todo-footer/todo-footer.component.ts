@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import * as fromFilter from '../../filter/filter.actions'
+import * as fromFilter from '../../filter/filter.actions';
+import * as fromTodo from '../todo.actions';
 import { AppState } from '../app.reducer';
 import { Store } from '@ngrx/store';
 import { Todo } from '../model/todo.model';
@@ -28,4 +29,9 @@ export class TodoFooterComponent implements OnInit {
   countState( todos: Todo[] ){
     this.statePendients = todos.filter( todo => !todo.completado ).length;
   }
+
+  clearCompleted(){
+    this.store.dispatch( new fromTodo.DeleteCompletedTodoAction() )
+  }
+
 }

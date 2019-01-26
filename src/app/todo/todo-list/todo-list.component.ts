@@ -9,10 +9,11 @@ import { Store } from '@ngrx/store';
 })
 export class TodoListComponent implements OnInit {
   todoList;
+  filter;
   constructor(private store: Store<AppState> ) { }
 
   ngOnInit() {
-    this.store.select('todos').subscribe( state => this.todoList=state )
+    this.store.subscribe( state => { this.todoList=state.todos; this.filter=state.filter });    
   }
 
 }
