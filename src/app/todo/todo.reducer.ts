@@ -35,7 +35,12 @@ export function todoReducer(state= estadoInicial, action: fromTodo.Accions ): To
             })
 
         case fromTodo.DELETE_TODO:
-        return state.filter( todoEdit => todoEdit.id !== action.id)
+            return state.filter( todoEdit => todoEdit.id !== action.id);
+        
+        case fromTodo.ALLTOGGLE_TODO:
+            return state.map(todoEdit => {
+                return {...todoEdit, completado: action.completado }
+            });
 
         default:
             return state;
